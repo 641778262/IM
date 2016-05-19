@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">IMKit</string>
+
+    <string name="team_need_authentication">需要身份验证</string>
+    <string name="team_allow_anyone_join">允许任何人加入</string>
+    <string name="team_not_allow_anyone_join">不允许任何人申请加入</string>
+
+    <string name="net_broken">当前网络不可用</string>
+    <string name="nim_status_unlogin">未登录</string>
+
+    <string name="main_msg_list_delete_chatting">删除该聊天</string>
+    <string name="main_msg_list_sticky_on_top">置顶该聊天</string>
+    <string name="main_msg_list_clear_sticky_on_top">取消置顶</string>
 </resources>

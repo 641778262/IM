@@ -9,12 +9,12 @@ import android.text.TextUtils;
 
 import com.chen.imkit.ImageLoaderKit;
 import com.chen.imkit.NimUIKit;
+import com.chen.imkit.cache.DemoCache;
 import com.chen.imkit.cache.FriendDataCache;
 import com.chen.imkit.cache.NimUserInfoCache;
 import com.chen.imkit.cache.TeamDataCache;
 import com.chen.imkit.contact.ContactProvider;
 import com.chen.imkit.utils.SystemUtil;
-import com.chen.imtest.im.DemoCache;
 import com.chen.imtest.preferences.Preferences;
 import com.chen.imtest.preferences.UserPreferences;
 import com.netease.nimlib.sdk.NIMClient;

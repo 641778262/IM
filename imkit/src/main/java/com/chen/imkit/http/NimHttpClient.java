@@ -3,8 +3,8 @@ package com.chen.imkit.http;
 import android.os.Handler;
 import android.util.Log;
 
-import com.netease.nim.demo.DemoCache;
-import com.netease.nim.uikit.common.framework.NimTaskExecutor;
+
+import com.chen.imkit.cache.DemoCache;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

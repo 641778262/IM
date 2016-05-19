@@ -3,7 +3,7 @@ package com.chen.imtest.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.chen.imtest.im.DemoCache;
+import com.chen.imkit.cache.DemoCache;
 
 
 /**
