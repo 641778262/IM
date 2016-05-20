@@ -1,7 +1,7 @@
 package com.chen.imkit.contact.adapter;
 
 import com.chen.imkit.NimUIKit;
-import com.chen.imkit.session.TeamNotificationHelper;
+import com.chen.imkit.session.helper.TeamNotificationHelper;
 import com.chen.imkit.utils.TimeUtil;
 import com.netease.nimlib.sdk.avchat.constant.AVChatRecordState;
 import com.netease.nimlib.sdk.avchat.constant.AVChatType;

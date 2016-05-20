@@ -24,9 +24,10 @@ public class MsgViewHolderFactory {
         // built in
         register(ImageAttachment.class, MsgViewHolderPicture.class);
         register(AudioAttachment.class, MsgViewHolderAudio.class);
+        tipMsgViewHolder = MsgViewHolderTip.class;
 //        register(VideoAttachment.class, MsgViewHolderVideo.class);
 //        register(LocationAttachment.class, MsgViewHolderLocation.class);
-//        register(NotificationAttachment.class, MsgViewHolderNotification.class);
+        register(NotificationAttachment.class, MsgViewHolderNotification.class);
     }
 
     public static void register(Class<? extends MsgAttachment> attach, Class<? extends MsgViewHolderBase> viewHolder) {

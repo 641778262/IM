@@ -71,7 +71,7 @@ public class InputPanel implements IAudioRecordCallback {
     protected FrameLayout textAudioSwitchLayout; // 切换文本，语音按钮布局
     protected View switchToTextButtonInInputBar;// 文本消息选择按钮
     protected View switchToAudioButtonInInputBar;// 语音消息选择按钮
-    protected View moreFuntionButtonInInputBar;// 更多消息选择按钮
+//    protected View moreFuntionButtonInInputBar;// 更多消息选择按钮
     protected View sendMessageButtonInInputBar;// 发送消息按钮
     protected View emojiButtonInInputBar;// 发送消息按钮
     protected View messageInputBar;
@@ -162,7 +162,7 @@ public class InputPanel implements IAudioRecordCallback {
         messageInputBar = view.findViewById(R.id.textMessageLayout);
         switchToTextButtonInInputBar = view.findViewById(R.id.buttonTextMessage);
         switchToAudioButtonInInputBar = view.findViewById(R.id.buttonAudioMessage);
-        moreFuntionButtonInInputBar = view.findViewById(R.id.buttonMoreFuntionInText);
+//        moreFuntionButtonInInputBar = view.findViewById(R.id.buttonMoreFuntionInText);
         emojiButtonInInputBar = view.findViewById(R.id.emoji_button);
         sendMessageButtonInInputBar = view.findViewById(R.id.buttonSendMessage);
         messageEditText = (EditText) view.findViewById(R.id.editTextMessage);
@@ -195,7 +195,7 @@ public class InputPanel implements IAudioRecordCallback {
         switchToAudioButtonInInputBar.setOnClickListener(clickListener);
         emojiButtonInInputBar.setOnClickListener(clickListener);
         sendMessageButtonInInputBar.setOnClickListener(clickListener);
-        moreFuntionButtonInInputBar.setOnClickListener(clickListener);
+//        moreFuntionButtonInInputBar.setOnClickListener(clickListener);
     }
 
     private void initTextEdit() {
@@ -296,9 +296,11 @@ public class InputPanel implements IAudioRecordCallback {
                 onTextMessageSendButtonPressed();
             } else if (v == switchToAudioButtonInInputBar) {
                 switchToAudioLayout();
-            } else if (v == moreFuntionButtonInInputBar) {
-//                toggleActionPanelLayout();
-            } else if (v == emojiButtonInInputBar) {
+            }
+//            else if (v == moreFuntionButtonInInputBar) {
+////                toggleActionPanelLayout();
+//            }
+            else if (v == emojiButtonInInputBar) {
                 //TODO 改成选择图片
 
 //                toggleEmojiLayout();
@@ -497,11 +499,13 @@ public class InputPanel implements IAudioRecordCallback {
     private void checkSendButtonEnable(EditText editText) {
         String textMessage = editText.getText().toString();
         if (!TextUtils.isEmpty(StringUtil.removeBlanks(textMessage)) && editText.hasFocus()) {
-            moreFuntionButtonInInputBar.setVisibility(View.GONE);
-            sendMessageButtonInInputBar.setVisibility(View.VISIBLE);
+//            moreFuntionButtonInInputBar.setVisibility(View.GONE);
+//            sendMessageButtonInInputBar.setVisibility(View.VISIBLE);
+            sendMessageButtonInInputBar.setEnabled(true);
         } else {
-            sendMessageButtonInInputBar.setVisibility(View.GONE);
-            moreFuntionButtonInInputBar.setVisibility(View.VISIBLE);
+//            sendMessageButtonInInputBar.setVisibility(View.GONE);
+//            moreFuntionButtonInInputBar.setVisibility(View.VISIBLE);
+            sendMessageButtonInInputBar.setEnabled(false);
         }
     }
 

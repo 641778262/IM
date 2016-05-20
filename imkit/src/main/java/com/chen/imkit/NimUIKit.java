@@ -11,6 +11,8 @@ import com.chen.imkit.contact.ContactEventListener;
 import com.chen.imkit.contact.ContactProvider;
 import com.chen.imkit.contact.LocationProvider;
 import com.chen.imkit.session.SessionEventListener;
+import com.chen.imkit.session.viewholder.MsgViewHolderBase;
+import com.chen.imkit.session.viewholder.MsgViewHolderFactory;
 import com.chen.imkit.userinfo.UserInfoHelper;
 import com.chen.imkit.utils.LogUtil;
 import com.chen.imkit.utils.ScreenUtil;
@@ -190,13 +192,13 @@ public final class NimUIKit {
 //        MsgViewHolderFactory.register(attach, viewHolder);
 //    }
 //
-//    /**
-//     * 注册Tip类型消息项展示ViewHolder
-//     * @param viewHolder Tip消息ViewHolder
-//     */
-//    public static void registerTipMsgViewHolder(Class<? extends MsgViewHolderBase> viewHolder) {
-//        MsgViewHolderFactory.registerTipMsgViewHolder(viewHolder);
-//    }
+    /**
+     * 注册Tip类型消息项展示ViewHolder
+     * @param viewHolder Tip消息ViewHolder
+     */
+    public static void registerTipMsgViewHolder(Class<? extends MsgViewHolderBase> viewHolder) {
+        MsgViewHolderFactory.registerTipMsgViewHolder(viewHolder);
+    }
 
     /**
      * 设置当前登录用户的帐号

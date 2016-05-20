@@ -3,7 +3,6 @@ package com.chen.imkit.session.module;
 import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import com.chen.imkit.R;
 import com.chen.imkit.common.view.ListViewUtil;
 import com.chen.imkit.common.view.MessageListView;
-import com.chen.imkit.session.TeamNotificationHelper;
+import com.chen.imkit.session.helper.TeamNotificationHelper;
 import com.chen.imkit.ui.HeadImageView;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 

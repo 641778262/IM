@@ -1,4 +1,4 @@
-package com.chen.imkit.session;
+package com.chen.imkit.session.helper;
 
 import android.text.TextUtils;
 

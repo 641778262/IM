@@ -45,7 +45,7 @@ public class EmojiManager {
     static {
         Context context = NimUIKit.getContext();
 
-        load(context, EMOT_DIR + "emoji.xml");
+//        load(context, EMOT_DIR + "emoji.xml");
 
         pattern = makePattern();
 

@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.chen.imkit.ImageLoaderKit;
 import com.chen.imkit.NimUIKit;
@@ -46,7 +47,7 @@ public class MainApplication extends Application {
     private LoginInfo getLoginInfo() {
         String account = Preferences.getUserAccount();
         String token = Preferences.getUserToken();
-
+//        Toast.makeText(getApplicationContext(),"account:"+account+";token = "+token,Toast.LENGTH_LONG).show();
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
             DemoCache.setAccount(account.toLowerCase());
             return new LoginInfo(account, token);
@@ -69,7 +70,7 @@ public class MainApplication extends Application {
         config.notificationSmallIconId = R.drawable.ic_stat_notify_msg;
 
         // 通知铃声的uri字符串
-        config.notificationSound = "android.resource://com.netease.nim.demo/raw/msg";
+//        config.notificationSound = "android.resource://com.netease.nim.demo/raw/msg";
         options.statusBarNotificationConfig = config;
         DemoCache.setNotificationConfig(config);
         UserPreferences.setStatusConfig(config);
