@@ -1,4 +1,4 @@
-package com.chen.imtest.fragment;
+package com.chen.imkit.common;
 
 import android.app.Activity;
 import android.content.Context;

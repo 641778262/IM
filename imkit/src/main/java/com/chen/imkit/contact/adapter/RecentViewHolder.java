@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.chen.imkit.R;
 import com.chen.imkit.adapter.TViewHolder;
+import com.chen.imkit.session.emoji.MoonUtil;
 import com.chen.imkit.ui.HeadImageView;
 import com.chen.imkit.userinfo.UserInfoHelper;
 import com.chen.imkit.utils.ScreenUtil;
@@ -92,8 +93,8 @@ public abstract class RecentViewHolder extends TViewHolder implements OnClickLis
     private void updateMsgLabel() {
         // 显示消息具体内容
         //TODO 是否显示emoji
-//        MoonUtil.identifyFaceExpressionAndTags(context, tvMessage, getContent(), ImageSpan.ALIGN_BOTTOM, 0.45f);
-        tvMessage.setText(getContent());
+        MoonUtil.identifyFaceExpressionAndTags(context, tvMessage, getContent(), ImageSpan.ALIGN_BOTTOM, 0.45f);
+//        tvMessage.setText(getContent());
 
         MsgStatusEnum status = recent.getMsgStatus();
         switch (status) {

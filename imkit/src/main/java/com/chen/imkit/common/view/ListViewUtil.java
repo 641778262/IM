@@ -1,4 +1,4 @@
-package com.chen.imkit.ui.listview;
+package com.chen.imkit.common.view;
 
 import android.annotation.TargetApi;
 import android.os.Build;

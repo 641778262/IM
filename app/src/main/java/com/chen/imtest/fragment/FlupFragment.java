@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.chen.imkit.common.BaseFragment;
 import com.chen.imtest.R;
 
 /**

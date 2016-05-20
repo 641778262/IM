@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.chen.imtest.fragment.BaseFragment;
+import com.chen.imkit.common.BaseFragment;
 import com.chen.imtest.fragment.FlupFragment;
 import com.chen.imtest.fragment.GroupFragment;
 import com.chen.imtest.fragment.SessionFragment;

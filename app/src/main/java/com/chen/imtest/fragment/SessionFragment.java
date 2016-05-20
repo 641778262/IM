@@ -17,13 +17,15 @@ import com.chen.imkit.adapter.TAdapterDelegate;
 import com.chen.imkit.adapter.TViewHolder;
 import com.chen.imkit.cache.FriendDataCache;
 import com.chen.imkit.cache.TeamDataCache;
+import com.chen.imkit.common.BaseFragment;
+import com.chen.imkit.common.view.ListViewUtil;
 import com.chen.imkit.contact.adapter.CommonRecentViewHolder;
 import com.chen.imkit.contact.adapter.RecentContactAdapter;
 import com.chen.imkit.contact.adapter.RecentContactsCallback;
 import com.chen.imkit.contact.adapter.RecentViewHolder;
 import com.chen.imkit.contact.adapter.TeamRecentViewHolder;
+import com.chen.imkit.session.MessageActivity;
 import com.chen.imkit.ui.CustomAlertDialog;
-import com.chen.imkit.ui.listview.ListViewUtil;
 import com.chen.imkit.userinfo.UserInfoHelper;
 import com.chen.imkit.userinfo.UserInfoObservable;
 import com.chen.imtest.R;
@@ -357,6 +359,8 @@ public class SessionFragment extends BaseFragment implements TAdapterDelegate{
 //                    default:
 //                        break;
 //                }
+                MessageActivity.start(getActivity(),recent.getContactId(),recent.getSessionType()==
+                        SessionTypeEnum.Team?MessageActivity.TYPE_TEAM:MessageActivity.TYPE_P2P);
             }
 
             @Override
