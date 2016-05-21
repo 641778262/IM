@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.chen.imkit.UserPreferences;
 import com.chen.imkit.cache.DataCacheManager;
 import com.chen.imkit.cache.DemoCache;
 import com.chen.imkit.http.ContactHttpClient;
@@ -18,7 +19,6 @@ import com.chen.imkit.utils.string.MD5;
 import com.chen.imtest.MainActivity;
 import com.chen.imtest.R;
 import com.chen.imtest.preferences.Preferences;
-import com.chen.imtest.preferences.UserPreferences;
 import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
