@@ -3,7 +3,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content">
 
-    <com.chen.imkit.ui.MsgThumbImageView
+    <com.jihao.imkit.ui.MsgThumbImageView
         android:id="@+id/message_item_thumb_thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

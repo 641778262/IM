@@ -12,7 +12,7 @@
         android:layout_height="0dip"
         android:layout_weight="1">
 
-        <com.chen.imkit.ui.MsgBkImageView
+        <com.jihao.imkit.ui.MsgBkImageView
             android:id="@+id/message_activity_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -29,7 +29,7 @@
 
             </FrameLayout>
 
-            <com.chen.imkit.common.view.MessageListView
+            <com.jihao.imkit.common.view.MessageListView
                 android:id="@+id/messageListView"
                 style="@style/list_view"
                 android:layout_width="match_parent"

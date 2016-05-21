@@ -23,7 +23,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true" >
 
-            <com.chen.imkit.ui.HeadImageView
+            <com.jihao.imkit.ui.HeadImageView
                 android:id="@+id/img_head"
                 android:layout_width="@dimen/avatar_size_default"
                 android:layout_height="@dimen/avatar_size_default"

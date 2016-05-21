@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chen.imtest">
+    package="com.jihao.imtest">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -25,22 +25,22 @@
     <!-- SDK 权限申明, 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
     <!-- 和下面的 uses-permission 一起加入到你的 AndroidManifest 文件中。 -->
     <permission
-        android:name="com.chen.imtest.permission.RECEIVE_MSG"
+        android:name="com.jihao.imtest.permission.RECEIVE_MSG"
         android:protectionLevel="signature" />
     <!-- 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
     <uses-permission android:name="com.chen.imtest.permission.RECEIVE_MSG" />
 
     <application
-        android:name=".MainApplication"
+        android:name="com.jihao.imtest.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.jihao.imtest.MainActivity">
 
         </activity>
-        <activity android:name=".activity.RegisterActivity"
+        <activity android:name="com.jihao.imtest.activity.RegisterActivity"
             android:screenOrientation="portrait">
 
         <intent-filter>
