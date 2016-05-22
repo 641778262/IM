@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jihao.baselibrary.http.OkHttpUtils;
+import com.jihao.baselibrary.http.callback.Callback;
 import com.jihao.imkit.UserPreferences;
 import com.jihao.imkit.cache.DataCacheManager;
 import com.jihao.imkit.cache.DemoCache;
@@ -25,9 +27,13 @@ import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 
+import java.io.Serializable;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by jiahao on 16/5/18.
@@ -54,6 +60,7 @@ public class RegisterActivity extends Activity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
+//        getPackageName()
 //        findViewById(R.id.bt_login).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -75,11 +82,76 @@ public class RegisterActivity extends Activity {
 //            } else {
 //
 //            }
-            login();
+//            login();
 
+            getUser();
         }
     }
 
+    public void getUser()
+    {
+        String url = "/gists/c2a7c39532239ff261be";
+        OkHttpUtils
+                .get()//
+                .url(url)//
+                .build()//
+                .execute(new Callback<Gist>(){
+
+                    @Override
+                    public Gist parseNetworkResponse(Response response) throws Exception {
+                        return getObjectByString(response,Gist.class);
+                    }
+
+                    @Override
+                    public void onError(Call call, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Gist response) {
+                        Toast.makeText(getApplicationContext(),response.getId(),Toast.LENGTH_LONG).show();
+
+                    }
+                });
+    }
+    public class Gist implements Serializable {
+        private String url;
+        private String forks_url;
+        private String commits_url;
+        private String id;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getForks_url() {
+            return forks_url;
+        }
+
+        public void setForks_url(String forks_url) {
+            this.forks_url = forks_url;
+        }
+
+        public String getCommits_url() {
+            return commits_url;
+        }
+
+        public void setCommits_url(String commits_url) {
+            this.commits_url = commits_url;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+    }
 
     public void register() {
         account = nameET.getText().toString().trim();
