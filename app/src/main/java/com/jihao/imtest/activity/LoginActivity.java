@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.jihao.baselibrary.http.OkHttpUtils;
 import com.jihao.baselibrary.http.callback.Callback;
+import com.jihao.imkit.Preferences;
 import com.jihao.imkit.UserPreferences;
 import com.jihao.imkit.cache.DataCacheManager;
 import com.jihao.imkit.cache.DemoCache;
@@ -20,7 +21,6 @@ import com.jihao.imkit.http.ContactHttpClient;
 import com.jihao.imkit.utils.string.MD5;
 import com.jihao.imtest.MainActivity;
 import com.jihao.imtest.R;
-import com.jihao.imtest.preferences.Preferences;
 import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
@@ -38,7 +38,7 @@ import okhttp3.Response;
 /**
  * Created by jiahao on 16/5/18.
  */
-public class RegisterActivity extends Activity {
+public class LoginActivity extends Activity {
     @Bind(R.id.et_name)
     EditText nameET;
     @Bind(R.id.et_pwd)
@@ -210,7 +210,7 @@ public class RegisterActivity extends Activity {
                 DataCacheManager.buildDataCacheAsync();
 
                 // 进入主界面
-                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 finish();
             }
 

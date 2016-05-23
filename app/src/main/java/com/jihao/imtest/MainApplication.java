@@ -2,6 +2,7 @@ package com.jihao.imtest;
 
 import android.app.Application;
 
+import com.jihao.baselibrary.http.OkHttpUtils;
 import com.jihao.imkit.NimUIKit;
 import com.jihao.imkit.cache.DemoCache;
 
@@ -14,5 +15,6 @@ public class MainApplication extends Application {
         super.onCreate();
         DemoCache.setContext(this);
         NimUIKit.initIMKit(this);
+        OkHttpUtils.getInstance().setContext(this);
     }
 }

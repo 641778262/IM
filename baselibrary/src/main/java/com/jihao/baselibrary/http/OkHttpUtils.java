@@ -1,5 +1,6 @@
 package com.jihao.baselibrary.http;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -39,6 +40,7 @@ public class OkHttpUtils
 {
 
     public static final long DEFAULT_MILLISECONDS = 10000;
+    public static Context mContext;
     private static OkHttpUtils mInstance;
     private OkHttpClient mOkHttpClient;
     private Handler mDelivery;
@@ -73,6 +75,9 @@ public class OkHttpUtils
         mDelivery = new Handler(Looper.getMainLooper());
     }
 
+    public void setContext(Context context) {
+        mContext = context;
+    }
 
     public OkHttpUtils debug(String tag)
     {
