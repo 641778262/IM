@@ -7,12 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.jihao.baselibrary.http.OkHttpUtils;
-import com.jihao.baselibrary.http.callback.StringCallback;
+import com.jihao.baselibrary.http.callback.Callback;
 import com.jihao.baselibrary.utils.SystemUtil;
-import com.jihao.imkit.utils.LogUtil;
+import com.jihao.baselibrary.utils.ToastUtil;
 import com.jihao.imtest.R;
 import com.jihao.imtest.base.BaseTopActivity;
-import com.jihao.imtest.constant.HttpConstans;
+import com.jihao.imtest.bean.UserInfo;
+import com.jihao.imtest.constant.HttpConstants;
 import com.jihao.imtest.constant.HttpParams;
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ import java.util.HashMap;
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
-import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by jiahao on 16/5/23.
@@ -41,7 +42,7 @@ public class LoginActivity extends BaseTopActivity {
         setTitleText(R.string.login);
 
         String phoneNum = SystemUtil.getPhoneNumber(this);
-        if(!isEmpty(phoneNum)) {
+        if (!isEmpty(phoneNum)) {
             mPhoneEt.setText(phoneNum);
             mPhoneEt.setSelection(phoneNum.length());
         }
@@ -58,10 +59,10 @@ public class LoginActivity extends BaseTopActivity {
     }
 
 
-    @OnTextChanged({R.id.et_phone,R.id.et_pwd})
+    @OnTextChanged({R.id.et_phone, R.id.et_pwd})
     public void afterTextChanged(Editable editable) {
-        if(mPwdEt.isFocused() || mPhoneEt.isFocused()) {
-            if(validLogin(false)) {
+        if (mPwdEt.isFocused() || mPhoneEt.isFocused()) {
+            if (validLogin(false)) {
                 mLoginBtn.setEnabled(true);
             } else {
                 mLoginBtn.setEnabled(false);
@@ -71,52 +72,58 @@ public class LoginActivity extends BaseTopActivity {
 
 
     public void login() {
-        if(validLogin(true)) {
+        if (validLogin(true)) {
             showProgressDialog(R.string.login_ing);
-            OkHttpUtils.post().url(HttpConstans.LOGIN).params(getParams()).build().execute(new StringCallback() {
-                @Override
-                public void onError(Call call, Exception e) {
 
-                }
+            OkHttpUtils.post().url(HttpConstants.LOGIN).params(getParams()).build().
+                    execute(new Callback<UserInfo>() {
 
-                @Override
-                public void onResponse(String response) {
-                    LogUtil.e("response",response);
-                }
+                        @Override
+                        public UserInfo parseNetworkResponse(Response response) throws Exception {
+                                return handleResponse(response,UserInfo.class);
+                        }
 
-                @Override
-                public void onAfter() {
-                    dismissProgressDialog();
-                }
-            });
+                        @Override
+                        public void onResponse(UserInfo userInfo) {
+                            if(userInfo != null) {
+                                ToastUtil.showToast(userInfo.getId());
+                            }
+
+                        }
+
+                        @Override
+                        public void onAfter() {
+                            dismissProgressDialog();
+                        }
+                    });
         }
     }
 
-    public HashMap<String,String> getParams() {
-        HashMap<String,String> map = new HashMap<>();
-        map.put(HttpParams.ACCOUNT,getEditTextString(mPhoneEt));
-        map.put(HttpParams.PASSWORD,getEditTextString(mPwdEt));
-        map.put(HttpParams.USER_TYPE,"1");
+    public HashMap<String, String> getParams() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(HttpParams.ACCOUNT, getEditTextString(mPhoneEt));
+        map.put(HttpParams.PASSWORD, getEditTextString(mPwdEt));
+        map.put(HttpParams.USER_TYPE, "1");
         return map;
     }
 
     public boolean validLogin(boolean showToast) {
-        if(isEditTextEmpty(mPhoneEt)) {
+        if (isEditTextEmpty(mPhoneEt)) {
             if (showToast) {
                 showToast(R.string.phone_num_hint);
             }
             return false;
         }
 
-        if(getEditTextString(mPhoneEt).length() != 11 || !getEditTextString(mPhoneEt).startsWith("1")) {
-            if(showToast) {
+        if (getEditTextString(mPhoneEt).length() != 11 || !getEditTextString(mPhoneEt).startsWith("1")) {
+            if (showToast) {
                 showToast(R.string.phone_num_error);
             }
             return false;
         }
 
-        if(isEditTextEmpty(mPwdEt)) {
-            if(showToast) {
+        if (isEditTextEmpty(mPwdEt)) {
+            if (showToast) {
                 showToast(R.string.password_hint);
             }
             return false;

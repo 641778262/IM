@@ -19,6 +19,7 @@ import com.jihao.baselibrary.http.https.HttpsUtils;
 import com.jihao.baselibrary.http.log.LoggerInterceptor;
 import com.jihao.baselibrary.http.request.RequestCall;
 import com.jihao.baselibrary.http.utils.Exceptions;
+import com.jihao.baselibrary.utils.ToastUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -270,6 +271,19 @@ public class OkHttpUtils
             {
                 callback.onResponse(object);
                 callback.onAfter();
+            }
+        });
+    }
+
+    public void showToast(int resId) {
+        showToast(mContext.getString(resId));
+    }
+
+    public void showToast(final String msg) {
+        mDelivery.post(new Runnable() {
+            @Override
+            public void run() {
+                ToastUtil.showToast(msg);
             }
         });
     }

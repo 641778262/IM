@@ -99,7 +99,7 @@ public class RegisterActivity extends Activity {
 
                     @Override
                     public Gist parseNetworkResponse(Response response) throws Exception {
-                        return getObjectByString(response,Gist.class);
+                        return handleResponse(response,Gist.class);
                     }
 
                     @Override

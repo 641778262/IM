@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BaseLibrary</string>
+    <string name="data_error">糟糕，出错了~~</string>
 </resources>

@@ -83,4 +83,5 @@
     <color name="whole_8">#888888</color>
     <color name="whole_2">#222222</color>
     <color name="btn_disable">#d3d3d3</color>
+    <color name="text_hint">#e5e5e5</color>
 </resources>

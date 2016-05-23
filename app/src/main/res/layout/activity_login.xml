@@ -8,11 +8,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/logo"/>
     <View
         style="@style/divider_view"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/whole_2"
-            android:textColorHint="@color/whole_bg"
+            android:textColorHint="@color/text_hint"
             android:hint="@string/phone_num_hint"
             android:textSize="@dimen/text_size_14"
             android:inputType="number"
@@ -67,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/whole_2"
-            android:textColorHint="@color/whole_bg"
+            android:textColorHint="@color/text_hint"
+            android:password="true"
             android:hint="@string/password_hint"
             android:textSize="@dimen/text_size_14"
             android:background="@null"/>

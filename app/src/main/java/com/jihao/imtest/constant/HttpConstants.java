@@ -3,7 +3,7 @@ package com.jihao.imtest.constant;
 /**
  * Created by jiahao on 16/5/23.
  */
-public class HttpConstans {
+public class HttpConstants {
     public static boolean DEBUG = true;
     public static final String TEST_URL = "http://test.jiahao.me";
 //    public static final String TEST_URL = "http://test2.jiahao.me";
