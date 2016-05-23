@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.jihao.baselibrary.R;
 import com.jihao.baselibrary.http.OkHttpUtils;
+import com.jihao.baselibrary.utils.NetworkUtils;
 import com.jihao.baselibrary.utils.ToastUtil;
 
 import org.json.JSONObject;
@@ -52,7 +53,11 @@ public abstract class Callback<T> {
     public abstract T parseNetworkResponse(Response response) throws Exception;
 
     public void onError(Call call, Exception e){
-
+        if(NetworkUtils.NETWORK_TYPE == NetworkUtils.NETWORK_NONE) {
+            showToast(R.string.net_error);
+        } else {
+            showToast(R.string.data_error);
+        }
     }
 
     public abstract void onResponse(T response);

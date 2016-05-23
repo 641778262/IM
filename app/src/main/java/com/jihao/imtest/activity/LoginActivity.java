@@ -1,20 +1,33 @@
 package com.jihao.imtest.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.jihao.baselibrary.http.OkHttpUtils;
 import com.jihao.baselibrary.http.callback.Callback;
+import com.jihao.baselibrary.preference.Preferences;
 import com.jihao.baselibrary.utils.SystemUtil;
-import com.jihao.baselibrary.utils.ToastUtil;
+import com.jihao.imkit.UserPreferences;
+import com.jihao.imkit.cache.DataCacheManager;
+import com.jihao.imkit.cache.DemoCache;
+import com.jihao.imtest.MainActivity;
 import com.jihao.imtest.R;
 import com.jihao.imtest.base.BaseTopActivity;
 import com.jihao.imtest.bean.UserInfo;
 import com.jihao.imtest.constant.HttpConstants;
 import com.jihao.imtest.constant.HttpParams;
+import com.netease.nimlib.sdk.AbortableFuture;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.auth.AuthService;
+import com.netease.nimlib.sdk.auth.LoginInfo;
 
 import java.util.HashMap;
 
@@ -27,6 +40,7 @@ import okhttp3.Response;
  * Created by jiahao on 16/5/23.
  */
 public class LoginActivity extends BaseTopActivity {
+
     @Bind(R.id.et_phone)
     EditText mPhoneEt;
     @Bind(R.id.et_pwd)
@@ -46,6 +60,16 @@ public class LoginActivity extends BaseTopActivity {
             mPhoneEt.setText(phoneNum);
             mPhoneEt.setSelection(phoneNum.length());
         }
+
+        mPwdEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_DONE) {
+                    login();
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -86,7 +110,7 @@ public class LoginActivity extends BaseTopActivity {
                         @Override
                         public void onResponse(UserInfo userInfo) {
                             if(userInfo != null) {
-                                ToastUtil.showToast(userInfo.getId());
+                               saveUserInfo(userInfo);
                             }
 
                         }
@@ -95,9 +119,74 @@ public class LoginActivity extends BaseTopActivity {
                         public void onAfter() {
                             dismissProgressDialog();
                         }
+
                     });
         }
     }
+
+    public void saveUserInfo(UserInfo userInfo) {
+//        showProgressDialog(R.string.login_ing);
+
+        Preferences.saveSid(userInfo.getSid());
+        Preferences.saveToken(userInfo.getToken());
+
+        final String account = userInfo.getAccId();
+        final String token = userInfo.getYunxinToken();
+
+        Preferences.saveIMAccount(account);
+        Preferences.saveIMToken(token);
+
+        AbortableFuture<LoginInfo>  loginRequest = NIMClient.getService(AuthService.class).
+                login(new LoginInfo(account, token));
+        loginRequest.setCallback(new RequestCallback<LoginInfo>() {
+            @Override
+            public void onSuccess(LoginInfo param) {
+                DemoCache.setAccount(account);
+
+                // 初始化消息提醒
+                NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
+
+                // 初始化免打扰
+                if (UserPreferences.getStatusConfig() == null) {
+                    UserPreferences.setStatusConfig(DemoCache.getNotificationConfig());
+                }
+                NIMClient.updateStatusBarNotificationConfig(UserPreferences.getStatusConfig());
+
+                // 构建缓存
+                DataCacheManager.buildDataCacheAsync();
+
+                // 进入主界面
+                startActivity(new Intent(mActivity,MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onFailed(int code) {
+                if (code == 302 || code == 404) {
+                    showToast("登录失败");
+                } else {
+                    showToast("登录失败: " + code);
+                }
+            }
+
+            @Override
+            public void onException(Throwable exception) {
+
+                exception.printStackTrace();
+
+            }
+        });
+
+//        mPwdEt.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                dismissProgressDialog();
+//                startActivity(new Intent(mActivity,MainActivity.class));
+//                finish();
+//            }
+//        },2000);
+    }
+
 
     public HashMap<String, String> getParams() {
         HashMap<String, String> map = new HashMap<>();

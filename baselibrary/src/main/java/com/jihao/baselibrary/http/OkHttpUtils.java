@@ -19,6 +19,7 @@ import com.jihao.baselibrary.http.https.HttpsUtils;
 import com.jihao.baselibrary.http.log.LoggerInterceptor;
 import com.jihao.baselibrary.http.request.RequestCall;
 import com.jihao.baselibrary.http.utils.Exceptions;
+import com.jihao.baselibrary.utils.NetworkUtils;
 import com.jihao.baselibrary.utils.ToastUtil;
 
 import java.io.IOException;
@@ -79,6 +80,7 @@ public class OkHttpUtils
 
     public OkHttpUtils setContext(Context context) {
         mContext = context;
+        NetworkUtils.initAPNType(context);
         return this;
     }
 

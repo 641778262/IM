@@ -14,7 +14,9 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        OkHttpUtils.getInstance().setContext(this).debug("OkHttpUtils").setBaseUrl(HttpConstants.BASE_URL);
+//        Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_LONG).show();
+        OkHttpUtils.getInstance().setContext(this).debug("OkHttpUtils").setBaseUrl(HttpConstants
+                .BASE_URL);
         DemoCache.setContext(this);
         NimUIKit.initIMKit(this);
     }

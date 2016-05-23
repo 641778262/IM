@@ -60,17 +60,6 @@ public class RegisterActivity extends Activity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-//        getPackageName()
-//        findViewById(R.id.bt_login).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(TextUtils.isEmpty(account)) {
-//                    register();
-//                } else {
-//
-//                }
-//            }
-//        });
     }
 
 

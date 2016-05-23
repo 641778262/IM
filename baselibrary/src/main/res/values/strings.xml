@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BaseLibrary</string>
     <string name="data_error">糟糕，出错了~~</string>
+    <string name="net_error">网络异常，请检查网络</string>
 </resources>

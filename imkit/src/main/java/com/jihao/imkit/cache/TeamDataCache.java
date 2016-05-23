@@ -39,8 +39,6 @@ public class TeamDataCache {
     public void buildCache() {
         List<Team> teams = NIMClient.getService(TeamService.class).queryTeamListBlock();
         addOrUpdateTeam(teams);
-
-        LogUtil.i(UIKitLogTag.TEAM_CACHE, "build TeamDataCache completed, team count = " + teams.size());
     }
 
     public void clear() {
@@ -268,6 +266,7 @@ public class TeamDataCache {
 
             id2TeamMap.put(t.getId(), t);
         }
+        LogUtil.i(UIKitLogTag.TEAM_CACHE, "build TeamDataCache completed, team count = " + teamList.size());
     }
 
     /**
