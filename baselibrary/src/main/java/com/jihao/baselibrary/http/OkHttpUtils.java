@@ -41,6 +41,7 @@ public class OkHttpUtils
 
     public static final long DEFAULT_MILLISECONDS = 10000;
     public static Context mContext;
+    public static String mBaseUrl;
     private static OkHttpUtils mInstance;
     private OkHttpClient mOkHttpClient;
     private Handler mDelivery;
@@ -75,8 +76,14 @@ public class OkHttpUtils
         mDelivery = new Handler(Looper.getMainLooper());
     }
 
-    public void setContext(Context context) {
+    public OkHttpUtils setContext(Context context) {
         mContext = context;
+        return this;
+    }
+
+    public OkHttpUtils setBaseUrl(String baseUrl) {
+        mBaseUrl = baseUrl;
+        return this;
     }
 
     public OkHttpUtils debug(String tag)

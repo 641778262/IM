@@ -1,8 +1,13 @@
 package com.jihao.baselibrary.http.request;
 
 
+import android.text.TextUtils;
+
+import com.jihao.baselibrary.http.OkHttpUtils;
 import com.jihao.baselibrary.http.callback.Callback;
 import com.jihao.baselibrary.http.utils.Exceptions;
+import com.jihao.baselibrary.preference.Preferences;
+import com.jihao.baselibrary.utils.SystemUtil;
 
 import java.util.Map;
 
@@ -15,7 +20,6 @@ import okhttp3.RequestBody;
  */
 public abstract class OkHttpRequest
 {
-    public static final String BASE_URL = "https://api.github.com";
     protected String url;
     protected Object tag;
     protected Map<String, String> params;
@@ -46,7 +50,7 @@ public abstract class OkHttpRequest
      */
     private void initBuilder()
     {
-        builder.url(BASE_URL+url).tag(tag);
+        builder.url(OkHttpUtils.mBaseUrl+url).tag(tag);
         appendHeaders();
     }
 
@@ -77,9 +81,18 @@ public abstract class OkHttpRequest
     protected void appendHeaders()
     {
         Headers.Builder headerBuilder = new Headers.Builder();
+
         //TODO 增加默认header
-        headerBuilder.add("appVersion","1");
-//        if (headers == null || headers.isEmpty()) return;
+        if(!TextUtils.isEmpty(Preferences.getSid())) {
+            headerBuilder.add("sid",Preferences.getSid());
+        }
+        if(!TextUtils.isEmpty(Preferences.getToken())) {
+            headerBuilder.add("token",Preferences.getToken());
+        }
+        headerBuilder.add("user-agent","JiahaoApp");
+        headerBuilder.add("version", SystemUtil.getVersionName(OkHttpUtils.mContext));
+        headerBuilder.add("sysname",android.os.Build.VERSION.RELEASE);
+
         if(headers != null && headers.size() > 0) {
             for (String key : headers.keySet())
             {
@@ -89,5 +102,7 @@ public abstract class OkHttpRequest
 
         builder.headers(headerBuilder.build());
     }
+
+
 
 }

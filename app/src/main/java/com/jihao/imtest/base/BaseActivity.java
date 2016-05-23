@@ -142,4 +142,9 @@ public class BaseActivity extends FragmentActivity {
         return et.getText().toString().trim();
     }
 
+    public boolean isEmpty(String str) {
+        return TextUtils.isEmpty(str);
+    }
+
+
 }

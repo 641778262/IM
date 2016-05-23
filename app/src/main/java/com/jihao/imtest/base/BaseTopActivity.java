@@ -7,9 +7,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jihao.baselibrary.R;
 
-import butterknife.Bind;
+import com.jihao.imtest.R;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -17,23 +17,15 @@ import butterknife.OnClick;
  * Created by json on 15/8/4.
  */
 public abstract class BaseTopActivity extends BaseActivity {
-    @Bind(R.id.top_root)
+
     protected LinearLayout mLayout;
-    @Bind(R.id.top_rl_left)
     protected RelativeLayout mLeftLayout;
-    @Bind(R.id.top_tv_title)
     protected TextView mTitleText;
-    @Bind(R.id.top_bt_right)
     protected Button mRightBtn;
-    @Bind(R.id.top_ll_center)
     protected LinearLayout mTopCenterLayout;
-    @Bind(R.id.top_ll_content)
     protected LinearLayout mContentLayout;
-    @Bind(R.id.top_layout)
     protected RelativeLayout mTopLayout;
-    @Bind(R.id.top_iv_right)
     protected ImageView mRightImageView;
-    @Bind(R.id.top_rl_right)
     protected RelativeLayout mRightLayout;
 
     /**
@@ -46,7 +38,15 @@ public abstract class BaseTopActivity extends BaseActivity {
         super.setContentView(R.layout.base_top);
         mContentLayout = (LinearLayout) findViewById(R.id.top_ll_content);
         View contentView = View.inflate(this, resId, mContentLayout);
-        mLayout = (LinearLayout) findViewById(R.id.top_root);
+        mLayout = findView(R.id.top_root);
+        mLeftLayout = findView(R.id.top_rl_left);
+        mTitleText = findView(R.id.top_tv_title);
+        mRightBtn = findView(R.id.top_bt_right);
+        mTopCenterLayout = findView(R.id.top_ll_center);
+        mContentLayout = findView(R.id.top_ll_content);
+        mTopLayout = findView(R.id.top_layout);
+        mRightImageView = findView(R.id.top_iv_right);
+        mRightLayout = findView(R.id.top_rl_right);
         ButterKnife.bind(this, mLayout);
         addViewToTopCenterLayout();
         initListView(contentView);
@@ -228,4 +228,7 @@ public abstract class BaseTopActivity extends BaseActivity {
         mRightImageView.setImageResource(bg);
     }
 
+    protected <T extends View> T findView(int resId) {
+        return (T) (findViewById(resId));
+    }
 }

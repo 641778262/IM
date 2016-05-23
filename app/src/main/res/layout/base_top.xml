@@ -64,7 +64,7 @@
             android:paddingLeft="95dp"
             android:paddingRight="95dp"
             android:singleLine="true"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -86,6 +86,7 @@
         android:id="@+id/top_ll_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/whole_bg"
         android:orientation="vertical">
 
     </LinearLayout>

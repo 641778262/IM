@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.jihao.baselibrary.preference.Preferences;
 import com.jihao.imkit.cache.DataCacheManager;
 import com.jihao.imkit.cache.DemoCache;
 import com.jihao.imkit.cache.FriendDataCache;
@@ -376,8 +377,8 @@ public final class NimUIKit {
 //        ContactHelper.init();
 //    }
     private static LoginInfo getLoginInfo() {
-        String account = Preferences.getUserAccount();
-        String token = Preferences.getUserToken();
+        String account = Preferences.getIMAccount();
+        String token = Preferences.getIMToken();
 //        Toast.makeText(getApplicationContext(),"account:"+account+";token = "+token,Toast.LENGTH_LONG).show();
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
             DemoCache.setAccount(account.toLowerCase());
