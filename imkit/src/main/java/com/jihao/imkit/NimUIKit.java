@@ -1,6 +1,8 @@
 package com.jihao.imkit;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -8,7 +10,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.jihao.baselibrary.preference.Preferences;
 import com.jihao.imkit.cache.DataCacheManager;
 import com.jihao.imkit.cache.DemoCache;
 import com.jihao.imkit.cache.FriendDataCache;
@@ -26,9 +27,12 @@ import com.jihao.imkit.utils.ScreenUtil;
 import com.jihao.imkit.utils.SystemUtil;
 import com.jihao.imkit.utils.storage.StorageType;
 import com.jihao.imkit.utils.storage.StorageUtil;
+import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
+import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.uinfo.UserInfoProvider;
@@ -267,13 +271,14 @@ public final class NimUIKit {
     /**
      * 在Application onCreate时初始化
      */
-    public static void initIMKit(Context context) {
+    public static void initIMKit(Context context,String account,String token) {
+        DemoCache.setContext(context);
         NimUIKit.context = context;
         NimUIKit.context = context.getApplicationContext();
         initUserInfoProvider();
         initContactProvider();
         NimUIKit.imageLoaderKit = new ImageLoaderKit(context, null);
-        NIMClient.init(context, getLoginInfo(), getOptions());
+        NIMClient.init(context, getLoginInfo(account,token), getOptions());
         if (inMainProcess()) {
             NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
             initDataChe();
@@ -376,9 +381,7 @@ public final class NimUIKit {
     // 通讯录列表定制初始化
 //        ContactHelper.init();
 //    }
-    private static LoginInfo getLoginInfo() {
-        String account = Preferences.getIMAccount();
-        String token = Preferences.getIMToken();
+    private static LoginInfo getLoginInfo(String account,String token) {
 //        Toast.makeText(getApplicationContext(),"account:"+account+";token = "+token,Toast.LENGTH_LONG).show();
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
             DemoCache.setAccount(account.toLowerCase());
@@ -435,4 +438,54 @@ public final class NimUIKit {
         return packageName.equals(processName);
     }
 
+
+    /**
+     * 云信登录成功时初始化一些基本信息
+     */
+
+    public static void initLoginData(final String account, String token, final Activity activity, final Class clss) {
+        // 登录云信聊天服务器
+        AbortableFuture<LoginInfo> loginRequest = NIMClient.getService(AuthService.class).
+                login(new LoginInfo(account, token));
+        loginRequest.setCallback(new RequestCallback<LoginInfo>() {
+            @Override
+            public void onSuccess(LoginInfo param) {
+                DemoCache.setAccount(account);
+
+                // 初始化消息提醒
+                NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
+
+                // 初始化免打扰
+                if (UserPreferences.getStatusConfig() == null) {
+                    UserPreferences.setStatusConfig(DemoCache.getNotificationConfig());
+                }
+                NIMClient.updateStatusBarNotificationConfig(UserPreferences.getStatusConfig());
+
+                // 构建缓存
+                DataCacheManager.buildDataCacheAsync();
+
+                // 进入主界面
+                if(activity != null && clss != null) {
+                    activity.startActivity(new Intent(activity,clss));
+                    activity.finish();
+                }
+            }
+
+            @Override
+            public void onFailed(int code) {
+                if (code == 302 || code == 404) {
+                    LogUtil.d("test","聊天服务器登录失败");
+                } else {
+                    LogUtil.d("test","聊天服务器登录失败: " + code);
+                }
+            }
+
+            @Override
+            public void onException(Throwable exception) {
+
+                exception.printStackTrace();
+
+            }
+        });
+    }
 }

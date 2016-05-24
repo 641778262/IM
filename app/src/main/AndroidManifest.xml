@@ -28,7 +28,7 @@
         android:name="com.jihao.assistant.permission.RECEIVE_MSG"
         android:protectionLevel="signature" />
     <!-- 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
-    <uses-permission android:name="com.chen.imtest.permission.RECEIVE_MSG" />
+    <uses-permission android:name="com.jihao.assistant.permission.RECEIVE_MSG" />
 
     <application
         android:name="com.jihao.assistant.MainApplication"
@@ -65,7 +65,7 @@
             如果 SDKOptions 中提供了，取 SDKOptions 中的值。 -->
         <meta-data
             android:name="com.netease.nim.appKey"
-            android:value="45c6af3c98409b18a84451215d0bdd6e" />
+            android:value="7c43bc55fca06bac09a6cdf77853aaba" />
 
         <!-- 声明云信后台服务，如需保持后台推送，使用独立进程效果会更好。 -->
         <service

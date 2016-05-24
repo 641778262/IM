@@ -23,6 +23,11 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    dexOptions {
+        incremental true
+        preDexLibraries false
+        jumboMode true
+    }
 }
 
 dependencies {

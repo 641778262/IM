@@ -1,6 +1,5 @@
 package com.jihao.assistant.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.KeyEvent;
@@ -14,20 +13,13 @@ import com.jihao.baselibrary.http.OkHttpUtils;
 import com.jihao.baselibrary.http.callback.Callback;
 import com.jihao.baselibrary.preference.Preferences;
 import com.jihao.baselibrary.utils.SystemUtil;
-import com.jihao.imkit.UserPreferences;
-import com.jihao.imkit.cache.DataCacheManager;
-import com.jihao.imkit.cache.DemoCache;
+import com.jihao.imkit.NimUIKit;
 import com.jihao.assistant.MainActivity;
 import com.jihao.assistant.R;
 import com.jihao.assistant.base.BaseTopActivity;
 import com.jihao.assistant.bean.UserInfo;
 import com.jihao.assistant.constant.HttpConstants;
 import com.jihao.assistant.constant.HttpParams;
-import com.netease.nimlib.sdk.AbortableFuture;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.RequestCallback;
-import com.netease.nimlib.sdk.auth.AuthService;
-import com.netease.nimlib.sdk.auth.LoginInfo;
 
 import java.util.HashMap;
 
@@ -125,8 +117,6 @@ public class LoginActivity extends BaseTopActivity {
     }
 
     public void saveUserInfo(UserInfo userInfo) {
-//        showProgressDialog(R.string.login_ing);
-
         Preferences.saveSid(userInfo.getSid());
         Preferences.saveToken(userInfo.getToken());
 
@@ -136,55 +126,7 @@ public class LoginActivity extends BaseTopActivity {
         Preferences.saveIMAccount(account);
         Preferences.saveIMToken(token);
 
-        AbortableFuture<LoginInfo>  loginRequest = NIMClient.getService(AuthService.class).
-                login(new LoginInfo(account, token));
-        loginRequest.setCallback(new RequestCallback<LoginInfo>() {
-            @Override
-            public void onSuccess(LoginInfo param) {
-                DemoCache.setAccount(account);
-
-                // 初始化消息提醒
-                NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
-
-                // 初始化免打扰
-                if (UserPreferences.getStatusConfig() == null) {
-                    UserPreferences.setStatusConfig(DemoCache.getNotificationConfig());
-                }
-                NIMClient.updateStatusBarNotificationConfig(UserPreferences.getStatusConfig());
-
-                // 构建缓存
-                DataCacheManager.buildDataCacheAsync();
-
-                // 进入主界面
-                startActivity(new Intent(mActivity,MainActivity.class));
-                finish();
-            }
-
-            @Override
-            public void onFailed(int code) {
-                if (code == 302 || code == 404) {
-                    showToast("登录失败");
-                } else {
-                    showToast("登录失败: " + code);
-                }
-            }
-
-            @Override
-            public void onException(Throwable exception) {
-
-                exception.printStackTrace();
-
-            }
-        });
-
-//        mPwdEt.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                dismissProgressDialog();
-//                startActivity(new Intent(mActivity,MainActivity.class));
-//                finish();
-//            }
-//        },2000);
+        NimUIKit.initLoginData(account,token,mActivity,MainActivity.class);
     }
 
 
