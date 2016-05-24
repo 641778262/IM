@@ -1,4 +1,4 @@
-package com.jihao.imtest;
+package com.jihao.assistant;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;

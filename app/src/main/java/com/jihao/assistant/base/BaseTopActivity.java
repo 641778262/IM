@@ -1,4 +1,4 @@
-package com.jihao.imtest.base;
+package com.jihao.assistant.base;
 
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import com.jihao.imtest.R;
+import com.jihao.assistant.R;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -1,4 +1,4 @@
-package com.jihao.imtest.activity;
+package com.jihao.assistant.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,8 +19,8 @@ import com.jihao.imkit.cache.DataCacheManager;
 import com.jihao.imkit.cache.DemoCache;
 import com.jihao.imkit.http.ContactHttpClient;
 import com.jihao.imkit.utils.string.MD5;
-import com.jihao.imtest.MainActivity;
-import com.jihao.imtest.R;
+import com.jihao.assistant.MainActivity;
+import com.jihao.assistant.R;
 import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;

@@ -1,4 +1,4 @@
-package com.jihao.imtest.constant;
+package com.jihao.assistant.constant;
 
 /**
  * Created by jiahao on 16/5/23.

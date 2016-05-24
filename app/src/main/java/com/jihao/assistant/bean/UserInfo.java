@@ -1,4 +1,4 @@
-package com.jihao.imtest.bean;
+package com.jihao.assistant.bean;
 
 import com.google.gson.annotations.SerializedName;
 

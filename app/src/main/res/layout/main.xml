@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
      >
 
-    <com.jihao.imtest.viewpager.PagerSlidingTabStrip
+    <com.jihao.assistant.viewpager.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="@dimen/pager_sliding_tab_strip_height"

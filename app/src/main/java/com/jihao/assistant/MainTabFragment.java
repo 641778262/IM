@@ -1,4 +1,4 @@
-package com.jihao.imtest;
+package com.jihao.assistant;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,10 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jihao.imkit.common.BaseFragment;
-import com.jihao.imtest.fragment.FlupFragment;
-import com.jihao.imtest.fragment.GroupFragment;
-import com.jihao.imtest.fragment.SessionFragment;
-import com.jihao.imtest.viewpager.PagerSlidingTabStrip;
+import com.jihao.assistant.fragment.FlupFragment;
+import com.jihao.assistant.fragment.GroupFragment;
+import com.jihao.assistant.fragment.SessionFragment;
+import com.jihao.assistant.viewpager.PagerSlidingTabStrip;
 
 /**
  * Created by jiahao on 16/5/18.

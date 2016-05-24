@@ -1,4 +1,4 @@
-package com.jihao.imtest.activity;
+package com.jihao.assistant.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +17,12 @@ import com.jihao.baselibrary.utils.SystemUtil;
 import com.jihao.imkit.UserPreferences;
 import com.jihao.imkit.cache.DataCacheManager;
 import com.jihao.imkit.cache.DemoCache;
-import com.jihao.imtest.MainActivity;
-import com.jihao.imtest.R;
-import com.jihao.imtest.base.BaseTopActivity;
-import com.jihao.imtest.bean.UserInfo;
-import com.jihao.imtest.constant.HttpConstants;
-import com.jihao.imtest.constant.HttpParams;
+import com.jihao.assistant.MainActivity;
+import com.jihao.assistant.R;
+import com.jihao.assistant.base.BaseTopActivity;
+import com.jihao.assistant.bean.UserInfo;
+import com.jihao.assistant.constant.HttpConstants;
+import com.jihao.assistant.constant.HttpParams;
 import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;

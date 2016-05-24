@@ -1,4 +1,4 @@
-package com.jihao.imtest;
+package com.jihao.assistant;
 
 import org.junit.Test;
 

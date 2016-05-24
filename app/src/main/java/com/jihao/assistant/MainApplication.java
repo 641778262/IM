@@ -1,11 +1,11 @@
-package com.jihao.imtest;
+package com.jihao.assistant;
 
 import android.app.Application;
 
 import com.jihao.baselibrary.http.OkHttpUtils;
 import com.jihao.imkit.NimUIKit;
 import com.jihao.imkit.cache.DemoCache;
-import com.jihao.imtest.constant.HttpConstants;
+import com.jihao.assistant.constant.HttpConstants;
 
 /**
  * Created by jiahao on 16/5/18.

@@ -1,13 +1,13 @@
-package com.jihao.imtest.activity;
+package com.jihao.assistant.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.jihao.baselibrary.preference.Preferences;
-import com.jihao.imtest.MainActivity;
-import com.jihao.imtest.R;
-import com.jihao.imtest.base.BaseTopActivity;
+import com.jihao.assistant.MainActivity;
+import com.jihao.assistant.R;
+import com.jihao.assistant.base.BaseTopActivity;
 
 import butterknife.Bind;
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IMTest</string>
+    <string name="app_name">家好临床助手</string>
 
     <!-- Login -->
     <string name="login">登录</string>

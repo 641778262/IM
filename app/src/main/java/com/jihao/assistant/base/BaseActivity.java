@@ -1,4 +1,4 @@
-package com.jihao.imtest.base;
+package com.jihao.assistant.base;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

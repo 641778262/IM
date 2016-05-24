@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jihao.imtest.viewpager;
+package com.jihao.assistant.viewpager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -42,7 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jihao.imkit.utils.ScreenUtil;
-import com.jihao.imtest.R;
+import com.jihao.assistant.R;
 
 import java.util.Locale;
 

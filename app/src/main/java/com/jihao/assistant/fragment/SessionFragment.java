@@ -1,4 +1,4 @@
-package com.jihao.imtest.fragment;
+package com.jihao.assistant.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,7 +28,7 @@ import com.jihao.imkit.session.MessageActivity;
 import com.jihao.imkit.ui.CustomAlertDialog;
 import com.jihao.imkit.userinfo.UserInfoHelper;
 import com.jihao.imkit.userinfo.UserInfoObservable;
-import com.jihao.imtest.R;
+import com.jihao.assistant.R;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
